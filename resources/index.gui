@@ -1,0 +1,15 @@
+<svg class="background">
+
+  <text id="date" />
+
+  <text id="hour" /><text id="minute" />
+
+  <image href="icons/hr.png" class='icon heart-icon' />
+  <text class='stats-label' id="heart-rate" />
+
+  <image href="icons/steps.png" class='icon steps-icon' />
+  <text class='stats-label' id="steps" />
+
+  <image href="icons/battery-half.png" class='icon' id='battery-icon' />
+  <text class='stats-label' id="battery" />
+</svg>
