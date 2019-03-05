@@ -1,5 +1,6 @@
 import clock from "clock";
 import { HeartRateSensor } from "heart-rate";
+import { BodyPresenceSensor } from "body-presence";
 import { battery } from "power";
 import document from "document";
 import { preferences } from "user-settings";
@@ -13,21 +14,61 @@ const BATTERY_LOW_PATH = '../resources/icons/battery-low.png';
 
 const weekday = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
-// Get a handle on the <text> element
+// labels
 const hourLabel = document.getElementById("hour");
 const minuteLabel = document.getElementById("minute");
 const dateLabel = document.getElementById("date");
-const stepsLabel = document.getElementById("steps");
 const batteryLabel = document.getElementById("battery");
 const heartRateLabel = document.getElementById("heart-rate");
 
+const stepsLabel = document.getElementById("steps-label");
+const calsLabel = document.getElementById("cals-label");
+const activeMinLabel = document.getElementById("active-min-label");
+const floorsLabel = document.getElementById("floors-label");
+const distLabel = document.getElementById("dist-label");
+
+// icons
 const batteryIcon = document.getElementById("battery-icon");
 
+// buttons
+const activityCycleBtn = document.getElementById("activity-cycle-button");
 
-// == CLOCK AND DATE ==
+// activities containers
+const activities = document.getElementsByClassName("activity-container");
 
+// inititialize sensors and starting values
+var body = new BodyPresenceSensor();
+var hrm = new HeartRateSensor();
+heartRateLabel.text = "--";
 // Update the clock every minute
 clock.granularity = "minutes";
+
+// show only one activity at a time
+var visibleActivityIndex = 0;
+activities.forEach(element => {
+  element.style.display = "none";
+});
+toggle(activities[visibleActivityIndex]);
+
+// == Cycling the Activity Stats display ==
+activityCycleBtn.onactivate = function(evt) {
+  // hide current activity
+  toggle(activities[visibleActivityIndex])
+
+  // show next activity
+  visibleActivityIndex++;
+  if(visibleActivityIndex >= activities.length) {
+    visibleActivityIndex = 0;
+  }
+  toggle(activities[visibleActivityIndex]);
+}
+
+// Toggle Show/Hide
+function toggle(ele) {
+  ele.style.display = (ele.style.display === "inline") ? "none" : "inline";
+}
+
+// == CLOCK AND DATE ==
 
 // Update the <text> element every tick with the current time
 clock.ontick = (evt) => {
@@ -61,25 +102,27 @@ clock.ontick = (evt) => {
         batteryIcon.href = BATTERY_LOW_PATH;
     }
 
-    // == STEPS ==
+    // == ACTIVITIES ==
     stepsLabel.text = (userActivity.today.adjusted["steps"] || 0);
+    calsLabel.text = (userActivity.today.adjusted["calories"] || 0);
+    floorsLabel.text = (userActivity.today.adjusted["elevationGain"] || 0);
+    distLabel.text = Math.round((userActivity.today.adjusted["distance"] || 0) / 10) / 100 + " km";
+    activeMinLabel.text = (userActivity.today.adjusted["activeMinutes"] || 0) + " min";
 }
 
-
-
-// == HEART RATE ==
-
-// Create a new instance of the HeartRateSensor object
-var hrm = new HeartRateSensor();
-// Initialize the UI with some values
-heartRateLabel.text = "--";
-
-// Declare an event handler that will be called every time a new HR value is received.
+// == HEART RATE AND BODY PRESENCE ==
 hrm.onreading = function() {
   heartRateLabel.text = hrm.heartRate;
 }
 
-// Begin monitoring the sensor
-hrm.start();
-
-
+body.onreading = () => {
+  if (!body.present) {
+    // Stop monitoring the heart rate sensor
+    hrm.stop();
+    heartRateLabel.text = "--";
+  } else {
+    // Begin monitoring the heart rate sensor
+    hrm.start();
+  }
+};
+body.start();

@@ -2,14 +2,35 @@
 
   <text id="date" />
 
-  <text id="hour" /><text id="minute" />
+  <text class='clock' id="hour" /><text class='clock' id="minute" />
+
+  <svg class='activity-container'>
+    <image href="icons/steps.png" class='icon activity-icon' />
+    <text class='stats-label activity-label' id="steps-label" />
+  </svg>
+  <svg class='activity-container'>
+    <image href="icons/cals.png" class='icon activity-icon' />
+    <text class='stats-label activity-label' id="cals-label" />
+  </svg>
+  <svg class='activity-container'>
+    <image href="icons/am.png" class='icon activity-icon'/>
+    <text class='stats-label activity-label' id="active-min-label" />
+  </svg>
+  <svg class='activity-container'>
+    <image href="icons/floors.png" class='icon activity-icon' />
+    <text class='stats-label activity-label' id="floors-label" />
+  </svg>
+  <svg class='activity-container'>
+    <image href="icons/dist.png" class='icon activity-icon'/>
+    <text class='stats-label activity-label' id="dist-label" />
+  </svg>
 
   <image href="icons/hr.png" class='icon heart-icon' />
   <text class='stats-label' id="heart-rate" />
 
-  <image href="icons/steps.png" class='icon steps-icon' />
-  <text class='stats-label' id="steps" />
-
   <image href="icons/battery-half.png" class='icon' id='battery-icon' />
   <text class='stats-label' id="battery" />
+
+  <use id="activity-cycle-button" href="#push-button">
+  </use>
 </svg>

@@ -5,31 +5,30 @@
 #date {
   font-size: 40;
   font-family: Tungsten-Medium;
-  text-length: 40;
+  text-length: 8;
   text-anchor: middle;
   x: 50%;
   y: 20%;
   fill: white;
 }
 
-#hour {
+.clock {
   font-size: 180;
   font-family: Tungsten-Medium;
-  text-length: 20;
-  text-anchor: end;
-  x: 50%;
+  text-length: 4;
   y: 50%+60;
+}
+
+#hour {
+  text-anchor: end;
   fill: white;
+  x: 50%-5;
 }
 
 #minute {
-  font-size: 180;
-  font-family: Tungsten-Medium;
-  text-length: 20;
   text-anchor: start;
-  x: 50%;
-  y: 50%+60;
   fill: red;
+  x: 50%+5;
 }
 
 .icon {
@@ -40,31 +39,31 @@
 .stats-label {
   font-size: 30;
   font-family: Tungsten-Medium;
-  text-length: 20;
+  text-length: 8;
   fill: white;
 }
 
 #heart-rate {
   text-anchor: start;
-  x: 50%;
+  x: 50%+5;
   y: 85%;
 }
 
 .heart-icon{
   fill: red;
-  x: 50%-30;
+  x: 50%-25;
   y: 85%-24;
 }
 
-#steps{
+.activity-label{
   text-anchor: start;
-  x: 20%;
+  x: 18%;
   y: 85%;
 }
 
-.steps-icon{
+.activity-icon{
   fill: white;
-  x: 20%-30;
+  x: 18%-30;
   y: 85%-24;
 }
 
@@ -78,4 +77,8 @@
   fill: white;
   x: 75%-24;
   y: 85%-24;
+}
+
+#activity-cycle-button {
+  opacity: 0;
 }
