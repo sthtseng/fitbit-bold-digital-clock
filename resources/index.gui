@@ -17,10 +17,6 @@
     <text class='stats-label activity-label' id="active-min-label" />
   </svg>
   <svg class='activity-container'>
-    <image href="icons/floors.png" class='icon activity-icon' />
-    <text class='stats-label activity-label' id="floors-label" />
-  </svg>
-  <svg class='activity-container'>
     <image href="icons/dist.png" class='icon activity-icon'/>
     <text class='stats-label activity-label' id="dist-label" />
   </svg>

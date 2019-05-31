@@ -24,7 +24,6 @@ const heartRateLabel = document.getElementById("heart-rate");
 const stepsLabel = document.getElementById("steps-label");
 const calsLabel = document.getElementById("cals-label");
 const activeMinLabel = document.getElementById("active-min-label");
-const floorsLabel = document.getElementById("floors-label");
 const distLabel = document.getElementById("dist-label");
 
 // icons
@@ -105,7 +104,6 @@ clock.ontick = (evt) => {
     // == ACTIVITIES ==
     stepsLabel.text = (userActivity.today.adjusted["steps"] || 0);
     calsLabel.text = (userActivity.today.adjusted["calories"] || 0);
-    floorsLabel.text = (userActivity.today.adjusted["elevationGain"] || 0);
     distLabel.text = Math.round((userActivity.today.adjusted["distance"] || 0) / 10) / 100 + " km";
     activeMinLabel.text = (userActivity.today.adjusted["activeMinutes"] || 0) + " min";
 }
