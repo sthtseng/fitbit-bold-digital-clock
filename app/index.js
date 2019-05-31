@@ -1,3 +1,5 @@
+import { settingsStorage } from "settings";
+import * as messaging from "messaging";
 import clock from "clock";
 import { HeartRateSensor } from "heart-rate";
 import { BodyPresenceSensor } from "body-presence";
@@ -27,6 +29,7 @@ const activeMinLabel = document.getElementById("active-min-label");
 const distLabel = document.getElementById("dist-label");
 
 // icons
+const heartIcon = document.getElementById("heart-icon");
 const batteryIcon = document.getElementById("battery-icon");
 
 // buttons
@@ -39,7 +42,6 @@ const activities = document.getElementsByClassName("activity-container");
 var body = new BodyPresenceSensor();
 var hrm = new HeartRateSensor();
 heartRateLabel.text = "--";
-// Update the clock every minute
 clock.granularity = "minutes";
 
 // show only one activity at a time
@@ -124,3 +126,9 @@ body.onreading = () => {
   }
 };
 body.start();
+
+// == COLOR SETTINGS ==
+messaging.peerSocket.onmessage = function(evt) {
+  minuteLabel.style.fill = evt.data.value;
+  heartIcon.style.fill = evt.data.value;
+}

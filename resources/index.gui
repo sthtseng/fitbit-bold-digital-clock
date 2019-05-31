@@ -21,7 +21,7 @@
     <text class='stats-label activity-label' id="dist-label" />
   </svg>
 
-  <image href="icons/hr.png" class='icon heart-icon' />
+  <image href="icons/hr.png" class='icon heart-icon' id='heart-icon' />
   <text class='stats-label' id="heart-rate" />
 
   <image href="icons/battery-half.png" class='icon' id='battery-icon' />
