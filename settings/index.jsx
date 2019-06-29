@@ -20,9 +20,10 @@ function BoldDigitalSettings(props) {
                 {color: 'skyblue'},
                 {color: 'dodgerblue'},
                 {color: 'deepskyblue'},
-                {color: 'plum'},
+                {color: 'blueviolet'},
                 {color: 'violet'},
-                {color: 'hotpink'}
+                {color: 'hotpink'},
+                {color: 'plum'}
             ]}
           />
         </Section>

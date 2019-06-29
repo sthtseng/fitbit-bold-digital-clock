@@ -1,11 +1,11 @@
 {
   "name": "bold-digital",
-  "version": "0.1.0",
+  "version": "1.2.3",
   "private": true,
   "license": "UNLICENSED",
   "devDependencies": {
-    "@fitbit/sdk": "^3.1.0",
-    "@fitbit/sdk-cli": "^1.6.0"
+    "@fitbit/sdk": "^3.1.2",
+    "@fitbit/sdk-cli": "^1.6.3"
   },
   "fitbit": {
     "appUUID": "85621101-6feb-47ef-94f8-b10a474a1f17",

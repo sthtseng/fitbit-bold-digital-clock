@@ -1,5 +1,3 @@
-import { settingsStorage } from "settings";
-import * as messaging from "messaging";
 import clock from "clock";
 import { HeartRateSensor } from "heart-rate";
 import { BodyPresenceSensor } from "body-presence";
@@ -8,6 +6,7 @@ import document from "document";
 import { preferences } from "user-settings";
 import userActivity from "user-activity"; 
 import * as util from "../common/utils";
+import * as simpleSettings from "./device-settings";
 
 const BATTERY_FULL_PATH = '../resources/icons/battery-full.png';
 const BATTERY_HIGH_PATH = '../resources/icons/battery-high.png';
@@ -127,8 +126,14 @@ body.onreading = () => {
 };
 body.start();
 
-// == COLOR SETTINGS ==
-messaging.peerSocket.onmessage = function(evt) {
-  minuteLabel.style.fill = evt.data.value;
-  heartIcon.style.fill = evt.data.value;
+// == SETTINGS ==
+function settingsCallback(data) {
+  if (!data) {
+    return;
+  }
+  if (data.themeColor) {
+    minuteLabel.style.fill = data.themeColor;
+    heartIcon.style.fill = data.themeColor;
+  }
 }
+simpleSettings.initialize(settingsCallback);
